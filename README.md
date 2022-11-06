@@ -28,6 +28,10 @@ sudo dnf install clang-devel
 - Install [LiquidCrystal_I2C](https://github.com/johnrickman/LiquidCrystal_I2C) library to Arduino Libraries folder
 (manually or using Arduino IDE like you would normally do)
 - Edit ```arduino.yaml``` to configure your arduino installation and version of core library
+- Ensure to have rustfmt installed
+```sh
+rustup component add rustfmt
+```
 - Plug in your Arduino UNO and run the project:
 ```sh
 cargo run
@@ -43,3 +47,17 @@ sudo chmod a+rw /dev/ttyACM0
 sudo usermod -aG dialout $USER
 ```
 
+## Windows
+
+If you are running on Windows, consider different way of system dependencies installation.
+
+- Instead of install avr tools using dnf, locate them in your Arduino IDE installation and add the folders containing
+``avr-gcc`` and ``avrdude`` to the PATH. I had to add the following:
+  - ``%LOCALAPPDATA%\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\`` 
+  - ``%LOCALAPPDATA%\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\``
+- Ensure ``avr-gcc`` and ``avrdude`` are found.
+- Download and install clang for Windows [here](https://releases.llvm.org/download.html)
+- Setup ``LIBCLANG_PATH`` to point to ``<CLANG_INSTALL_DIR>\bin``
+- Setup ``AR`` to point to ``%LIBCLANG_PATH%\llvm-ar.exe``
+- Don't forget to update arduino.yaml with correct paths.
+- ``cargo build`` and ``cargo run`` should work now!
