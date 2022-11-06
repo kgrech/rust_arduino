@@ -1,0 +1,27 @@
+arduino_home: $HOME/.arduino15
+external_libraries_home: $HOME/Arduino/libraries
+core_version: 1.8.6
+variant: eightanaloginputs
+avr_gcc_version: 7.3.0-atmel3.6.1-arduino7
+arduino_libraries:
+  - Wire
+external_libraries:
+  - LiquidCrystal_I2C
+definitions:
+  ARDUINO: '10807'
+  F_CPU: 16000000L
+  ARDUINO_AVR_UNO: '1'
+  ARDUINO_ARCH_AVR: '1'
+flags:
+  - '-mmcu=atmega328p'
+bindgen_lists:
+  allowlist_function:
+    - LiquidCrystal_I2C.*
+  allowlist_type:
+    - LiquidCrystal_I2C.*
+  blocklist_function:
+    - Print.*
+    - String.*
+  blocklist_type:
+    - Print.*
+    - String.*

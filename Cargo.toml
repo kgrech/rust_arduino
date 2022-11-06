@@ -1,0 +1,43 @@
+[package]
+name = "avr-led-rust"
+version = "0.1.0"
+authors = ["Konstanin G <kgrech@mail.ru>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[[bin]]
+name = "avr-led-rust"
+test = false
+bench = false
+
+[dependencies]
+panic-halt = "0.2.0"
+ufmt = "0.1.0"
+nb = "0.1.2"
+embedded-hal = "0.2.3"
+
+[dependencies.arduino-hal]
+git = "https://github.com/rahix/avr-hal"
+rev = "3b8f39fa2ec5e3359c7bedc33d982e75e8cc3700"
+features = ["arduino-uno"]
+
+[build-dependencies]
+bindgen = "0.61"
+cc = "1.0.74"
+envmnt = "0.10.4"
+glob = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+
+# Configure the build for minimal size - AVRs have very little program memory
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
