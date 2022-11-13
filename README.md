@@ -6,6 +6,8 @@ with rust project to control I2C Text Display from Rust.
 It also shows how to combine it with existing Arduino rust crates.
 ``arduino_hal`` crate is used to blink the LED.
 
+This is the source code for [Five simple steps to use any Arduino C++ library in a Rust project 🦀](https://dev.to/kgrech/five-simple-steps-to-use-any-arduino-c-library-in-a-rust-project-1k78). [Demo video](https://www.youtube.com/shorts/GJqBYXa5j3A).
+
 ## Project setup
 
 - Install avr toolchain and avrdude
